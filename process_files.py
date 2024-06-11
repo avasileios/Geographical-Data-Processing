@@ -12,8 +12,8 @@ from tqdm import tqdm
 logging.basicConfig(filename='processing.log', level=logging.INFO, format='%(asctime)s:%(levelname)s:%(message)s')
 
 # Define the directories
-dir = r'D:\Uth\Master Cs\2nd Semester\Συστήματα Γεωγραφικών Πληροφοριών\geografika\Project2'
-country = r'\Βοζνία'  # Σερβία, Κροατία και Βοζνία
+dir = r'D:\Uth\Master Cs\2nd Semester\Συστήματα Γεωγραφικών Πληροφοριών\Project2\final'
+country = r'\Σερβία'  # Σερβία, Κροατία και Βοζνία
 output_folder_name = r'\results'
 
 input_dir = dir + country
@@ -57,15 +57,28 @@ def merge_and_save_data(df1, df2, output_dir):
     merged_df.to_csv(os.path.join(output_dir, 'merged.csv'), index=False, sep=';')
     return merged_df
 
-def plot_data(df2, output_dir, file_name):
+
+
+def plot_mm_data(df1, output_dir, file_name):
+    """Plot average monthly values for mm."""
+    plt.figure(figsize=(10, 6))
+    plt.plot(df1.index, df1['Value'], marker='o', linestyle='-')
+    plt.title(f'Average Monthly Value (mm) - {file_name}')
+    plt.xlabel('Time (by index)')
+    plt.ylabel('Value (0.1C)')
+    plt.grid(True)
+    plt.savefig(os.path.join(output_dir, f'{file_name}_average_monthly_mm_values.png'), metadata={'Title': f'Average Monthly Value (mm) - {file_name}'})
+    plt.close()
+
+def plot_ovmm_data(df2, output_dir, file_name):
     """Plot average monthly values."""
     plt.figure(figsize=(10, 6))
     plt.plot(df2['Month'], df2['Value'], marker='o', linestyle='-')
     plt.title(f'Average Monthly Value (ovmm) - {file_name}')
     plt.xlabel('Month')
-    plt.ylabel('Value')
+    plt.ylabel('Value (0.1C)')
     plt.grid(True)
-    plt.savefig(os.path.join(output_dir, f'{file_name}_average_monthly_values.png'), metadata={'Title': f'Average Monthly Value (ovmm) - {file_name}'})
+    plt.savefig(os.path.join(output_dir, f'{file_name}_average_monthly_ovmm_values.png'), metadata={'Title': f'Average Monthly Value (ovmm) - {file_name}'})
     plt.close()
 
 def plot_desmm_timeline(merged_df, output_dir, file_name):
@@ -74,7 +87,7 @@ def plot_desmm_timeline(merged_df, output_dir, file_name):
     plt.plot(merged_df['numeric_index'], merged_df['desmm'], marker='o', linestyle='-')
     plt.title(f'Desmm Timeline - {file_name}')
     plt.xlabel('Index')
-    plt.ylabel('Desmm')
+    plt.ylabel('Desmm (0.1C)')
     plt.grid(True)
     plt.savefig(os.path.join(output_dir, f'{file_name}_desmm_timeline.png'), metadata={'Title': f'Desmm Timeline - {file_name}'})
     plt.close()
@@ -93,7 +106,7 @@ def plot_regression(merged_df, output_dir, file_name):
     plt.plot(index_numeric, regression_line, color='blue', label='Linear Regression Line')
     plt.title(f'Desmm Timeline Scatter with Regression Line - {file_name}')
     plt.xlabel('Index')
-    plt.ylabel('Desmm')
+    plt.ylabel('Desmm (0.1C)')
     plt.grid(True)
     plt.legend()
     plt.savefig(os.path.join(output_dir, f'{file_name}_scatter_with_regression_line.png'), metadata={'Title': f'Desmm Timeline Scatter with Regression Line - {file_name}'})
@@ -123,7 +136,8 @@ def process_file(file_path):
     try:
         df = read_and_clean_data(file_path)
         df1, df2 = save_grouped_data(df, output_dir)
-        plot_data(df2, output_dir, file_name)
+        plot_mm_data(df1, output_dir, file_name)
+        plot_ovmm_data(df2, output_dir, file_name)
         merged_df = merge_and_save_data(df1, df2, output_dir)
         plot_desmm_timeline(merged_df, output_dir, file_name)
         slope, intercept, r_value, p_value, std_err = plot_regression(merged_df, output_dir, file_name)
