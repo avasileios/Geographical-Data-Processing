@@ -5,8 +5,11 @@ This project processes geographical data from CSV files. It reads the data, perf
 ## Project Structure
 
 - `process_files.py`: The main script that processes the CSV files.
+- `Interpolation_using_griddata.py`: The main script that plots Griddata Interpolation.
 - `processing.log`: Log file for processing details and errors.
 - `requirements.txt`: List of dependencies.
+
+
 
 
 ## Setup
