@@ -1,65 +1,74 @@
-# Geographical Data Processing
+# 🌍 Geographical Data Processing
 
-This project processes geographical data from CSV files. It reads the data, performs various analyses, generates plots, and saves the results.
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue?style=for-the-badge&logo=python)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)
+![Data](https://img.shields.io/badge/Data-Geographical-orange?style=for-the-badge&logo=databricks)
 
-## Project Structure
+This project processes **geographical data from CSV files**.  
+It reads the data, performs various analyses, generates plots, and saves the results for further exploration.  
 
-- `process_files.py`: The main script that processes the CSV files.
-- `Interpolation_using_griddata.py`: The main script that plots Griddata Interpolation.
-- `processing.log`: Log file for processing details and errors.
-- `requirements.txt`: List of dependencies.
+---
 
+## 📂 Project Structure
 
+- `process_files.py` – Main script for processing CSV files.  
+- `Interpolation_using_griddata.py` – Script for plotting Griddata Interpolation.  
+- `processing.log` – Log file containing processing details and errors.  
+- `requirements.txt` – List of dependencies.  
 
+---
 
-## Setup
+## ⚙️ Setup
 
-### Prerequisites
+### 🔑 Prerequisites
+- Python **3.x**  
 
-- Python 3.x
+### 📦 Installation
+Install the required packages:
+```bash
+pip install -r requirements.txt
+```
 
-### Installation
+---
 
+## 💻 Usage
 
-1. **Install the required packages:**
+### 1️⃣ Prepare Input Files
+Place your CSV files in the **input directory** specified in the script.  
+Modify the `input_dir` and `output_base_dir` in `process_files.py` according to your directory structure.  
 
-   ```
-   pip install -r requirements.txt
-   ```
+### 2️⃣ Run the Script
+```bash
+python process_files.py
+```
 
-## Usage
+### 3️⃣ Output
+- Processed CSV files  
+- Plots and analysis results  
+- `summary_report.csv` (summary report of all results)  
 
-1. **Place your CSV files in the input directory specified in the script:**
+All outputs will be saved in the specified output directory.  
 
-   Modify the `input_dir` and `output_base_dir` in the `process_files.py` script according to your directory structure.
+---
 
-2. **Run the script:**
+## 📦 Dependencies
+- `pandas`  
+- `matplotlib`  
+- `scipy`  
+- `statsmodels`  
+- `tqdm`  
 
-   ```
-   python process_files.py
-   ```
+---
 
-3. **Output:**
+## 📝 Logging
+A `processing.log` file is generated to log **all processing details and errors**.  
 
-   - The processed CSV files, plots, and analysis results will be saved in the specified output directory.
-   - A summary report will be saved as `summary_report.csv`.
+---
 
-## Dependencies
+## 📁 Directory Structure
 
-- pandas
-- matplotlib
-- scipy
-- statsmodels
-- tqdm
-
-## Logging
-
-A `processing.log` file is generated to log the details of the processing and any errors encountered.
-
-## Directory Structure
-
-The expected directory structure is:
-
+Expected structure:
 ```
 project-directory
 ├── README.md
@@ -68,10 +77,7 @@ project-directory
 └── processing.log
 ```
 
-## Example Directory Structure
-
-Before running the script, ensure your directory structure looks like this:
-
+### Example structure with input files:
 ```
 project-directory/
 ├── README.md
@@ -88,12 +94,15 @@ project-directory/
 └── processing.log
 ```
 
-The processed results will be saved in the `results` folder within the respective country folder.
+Processed results will be saved in the `results` folder within each respective country folder.  
 
-## Contributing
+---
 
-Feel free to fork this repository and make improvements. Pull requests are welcome.
+## 🤝 Contributing
+Contributions are welcome!  
+Fork this repository, make your improvements, and submit a pull request.  
 
-## License
+---
 
-This project is licensed under the MIT License.
+## 📜 License
+This project is licensed under the **MIT License**.  
